@@ -1,27 +1,19 @@
-import { Container, IconButton, TextField } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
+import { Container, TextField } from "@mui/material";
 
 type SearchBarProps = {
-  matchId: string;
-  onSetMatchId: (id: string) => void;
+  title: string;
+  onSetTitle: (id: string) => void;
 };
 
-const SearchBar = ({ matchId, onSetMatchId }: SearchBarProps) => {
+const SearchBar = ({ title, onSetTitle }: SearchBarProps) => {
   return (
     <Container sx={{ mt: 10 }}>
       <TextField
-        label="Enter match id"
+        label="Enter title of post"
         autoComplete="off"
         fullWidth
-        value={matchId}
-        onChange={(e) => onSetMatchId(e.target.value)}
-        InputProps={{
-          endAdornment: (
-            <IconButton>
-              <SendIcon color="primary" />
-            </IconButton>
-          ),
-        }}
+        value={title}
+        onChange={(e) => onSetTitle(e.target.value)}
       />
     </Container>
   );

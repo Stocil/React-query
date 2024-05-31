@@ -1,9 +1,9 @@
-import MatchLayout from "../MatchLayout";
+import PostsLayout from "../PostsLayout";
 
 function App() {
   return (
     <main>
-      <MatchLayout />
+      <PostsLayout />
     </main>
   );
 }
