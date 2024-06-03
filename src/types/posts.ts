@@ -6,3 +6,5 @@ export type SinglePostType = {
 };
 
 export type PostsType = SinglePostType[];
+
+export type CreatePostPropsType = Omit<SinglePostType, "id">;

@@ -1,16 +1,24 @@
 import { FC } from "react";
 
-import { CircularProgress, Container, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  Container,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 import SinglePost from "../SinglePost";
-import { useGetPostQuery } from "../../hooks/useGetPostQuery.ts";
+import { useFetchPosts } from "../../hooks/useFetchPosts.ts";
+import { useCreatePost } from "../../hooks/useCreatePost.ts";
 
 type SingleMatchProps = {
   userId: string;
 };
 
 const Posts: FC<SingleMatchProps> = ({ userId }) => {
-  const { data, isLoading, isSuccess } = useGetPostQuery(userId);
+  const { data, isLoading, isSuccess } = useFetchPosts(userId);
+  const createPost = useCreatePost();
 
   if (isLoading) return <CircularProgress sx={{ mt: 5 }} size={60} />;
   if (!isSuccess)
@@ -28,6 +36,20 @@ const Posts: FC<SingleMatchProps> = ({ userId }) => {
       {data ? (
         data.length > 0 ? (
           <Stack spacing={4}>
+            <Button
+              sx={{ alignSelf: "center" }}
+              variant="outlined"
+              size="large"
+              onClick={() => {
+                createPost.mutate({
+                  body: "test body",
+                  title: "test title",
+                  userId: 1,
+                });
+              }}>
+              Create new post
+            </Button>
+
             {data.map((post) => (
               <SinglePost key={post.id} post={post} />
             ))}
