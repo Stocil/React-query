@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { BASE_URL } from "../constants";
 import { PostsType } from "../types/posts.ts";
@@ -22,5 +22,6 @@ export const useFetchPosts = (userId: string) => {
     retry: 1,
     retryDelay: 2000,
     refetchOnWindowFocus: false,
+    placeholderData: keepPreviousData,
   });
 };
