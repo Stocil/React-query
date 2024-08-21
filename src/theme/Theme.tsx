@@ -33,7 +33,7 @@ export function Theme({ children }: ThemeProps) {
         main: pink[100],
       },
       typography: {
-        main: "#ccc",
+        main: "#b3b3b3",
       },
       background: {
         default: "#0d0d0d",

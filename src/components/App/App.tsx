@@ -1,9 +1,9 @@
-import PostsLayout from "../PostsLayout";
+import ReposLayout from "../ReposLayout";
 
 function App() {
   return (
     <main>
-      <PostsLayout />
+      <ReposLayout />
     </main>
   );
 }

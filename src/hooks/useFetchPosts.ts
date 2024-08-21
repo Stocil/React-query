@@ -1,12 +1,13 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { BASE_URL } from "../constants";
-import { PostsType } from "../types/posts.ts";
+import { ReposResponseType } from "../types/repos.ts";
 
-export const useFetchPosts = (userId: string) => {
-  const fetchPosts = async (): Promise<PostsType> => {
+export const useFetchPosts = (langName: string, page: number) => {
+  const fetchPosts = async (): Promise<ReposResponseType> => {
     const response = await fetch(
-      BASE_URL + `/posts` + `${userId ? `?userId=${userId}` : ""}`
+      BASE_URL +
+        `?q=language:${langName || "TypeScript"}&per_page=20&page=${page}`
     );
 
     if (!response.ok) {
@@ -17,11 +18,11 @@ export const useFetchPosts = (userId: string) => {
   };
 
   return useQuery({
-    queryKey: ["posts", userId],
+    queryKey: ["posts", langName, page],
     queryFn: fetchPosts,
     retry: 1,
     retryDelay: 2000,
     refetchOnWindowFocus: false,
-    placeholderData: keepPreviousData,
+    // placeholderData: keepPreviousData,
   });
 };
